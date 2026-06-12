@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="text-center mb-4">
+
+    <h1>
+        Nail Inspiration Board
+    </h1>
+
+</div>
+
+<form method="GET">
+
+<div class="row mb-4">
+
+<div class="col-md-6">
+
+<input type="text"
+       name="q"
+       class="form-control"
+       placeholder="Search Designs">
+
+</div>
+
+<div class="col-md-4">
+
+<select name="category"
+        class="form-select">
+
+<option value="">
+All Categories
+</option>
+
+{% for category in categories %}
+
+<option value="{{ category.id }}">
+{{ category.name }}
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="col-md-2">
+
+<button class="btn btn-dark w-100">
+Search
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+<div class="masonry">
+
+{% for design in designs %}
+
+<div class="pin-card">
+
+<a href="{% url 'design_detail' design.id %}">
+
+<img src="{{ design.image.url }}">
+
+</a>
+
+<h5>
+{{ design.title }}
+</h5>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %} My Appointments {% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between mb-4">
+
+<h2>My Appointments</h2>
+
+<a href="{% url 'appointment_create' %}"
+   class="btn btn-success">
+
+Book Appointment
+
+</a>
+
+</div>
+
+<table class="table table-striped">
+
+<thead>
+
+<tr>
+<th>Customer</th>
+<th>Service</th>
+<th>Date</th>
+<th>Time</th>
+<th>Status</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for appointment in appointments %}
+
+<tr>
+
+<td>{{ appointment.customer }}</td>
+<td>{{ appointment.service }}</td>
+<td>{{ appointment.appointment_date }}</td>
+<td>{{ appointment.appointment_time }}</td>
+
+<td>
+<span class="badge bg-primary">
+{{ appointment.status }}
+</span>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>{{ product.name }}</h2>
+
+<p><strong>Current Stock:</strong> {{ product.current_stock }}</p>
+
+<p><strong>Minimum Stock:</strong> {{ product.minimum_stock }}</p>
+
+<hr>
+
+<h4>Stock Movement History</h4>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Transaction</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for tx in transactions %}
+
+        <tr>
+
+            <td>{{ tx.created_at }}</td>
+
+            <td>{{ tx.transaction_type }}</td>
+
+            <td>{{ tx.quantity }}</td>
+
+        </tr>
+
+    {% empty %}
+
+        <tr>
+            <td colspan="3">
+                No transactions available.
+            </td>
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

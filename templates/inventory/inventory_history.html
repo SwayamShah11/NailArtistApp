@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Inventory Transaction History</h2>
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Product</th>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Reference</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for tx in transactions %}
+
+        <tr>
+
+            <td>{{ tx.created_at }}</td>
+
+            <td>{{ tx.product.name }}</td>
+
+            <td>{{ tx.transaction_type }}</td>
+
+            <td>
+                {% if tx.quantity > 0 %}
+                    <span class="text-success">
+                        +{{ tx.quantity }}
+                    </span>
+                {% else %}
+                    <span class="text-danger">
+                        {{ tx.quantity }}
+                    </span>
+                {% endif %}
+            </td>
+
+            <td>{{ tx.reference_id }}</td>
+
+        </tr>
+
+    {% empty %}
+
+        <tr>
+            <td colspan="5">
+                No transactions found.
+            </td>
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

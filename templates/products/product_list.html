@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-4">
+
+<h2>
+Products
+</h2>
+
+<a href="{% url 'product_create' %}"
+   class="btn btn-success">
+
+Add Product
+
+</a>
+
+</div>
+
+<table class="table table-striped">
+
+<thead>
+
+<tr>
+
+<th>Image</th>
+<th>Name</th>
+<th>Stock</th>
+<th>Purchase</th>
+<th>Selling</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for product in products %}
+
+<tr>
+
+<td>
+
+{% if product.image %}
+
+<img src="{{ product.image.url }}"
+     width="60">
+
+{% endif %}
+
+</td>
+
+<td>
+{{ product.name }}
+</td>
+
+<td>
+
+{% if product.stock <= product.minimum_stock %}
+
+<span class="badge bg-danger">
+
+{{ product.stock }}
+
+</span>
+
+{% else %}
+
+<span class="badge bg-success">
+
+{{ product.current_stock|default:0 }}
+
+</span>
+
+{% endif %}
+
+</td>
+
+<td>
+₹{{ product.purchase_price }}
+</td>
+
+<td>
+₹{{ product.selling_price }}
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">
+My Saved Designs
+</h2>
+
+<div class="row">
+
+{% for item in saved_designs %}
+
+<div class="col-md-4 mb-4">
+
+<div class="card">
+
+<img src="{{ item.design.image.url }}"
+     class="card-img-top">
+
+<div class="card-body">
+
+<h5>
+{{ item.design.title }}
+</h5>
+
+<a href="{% url 'design_detail' item.design.id %}"
+   class="btn btn-primary">
+
+View
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<p>
+No saved designs yet.
+</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

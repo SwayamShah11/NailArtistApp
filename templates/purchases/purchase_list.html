@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Purchases</h2>
+
+<table class="table">
+
+<thead>
+
+<tr>
+<th>ID</th>
+<th>Supplier</th>
+<th>Date</th>
+<th>Total</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for purchase in purchases %}
+
+<tr>
+
+<td>{{ purchase.id }}</td>
+
+<td>{{ purchase.supplier }}</td>
+
+<td>{{ purchase.purchase_date }}</td>
+
+<td>₹{{ purchase.total_amount }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

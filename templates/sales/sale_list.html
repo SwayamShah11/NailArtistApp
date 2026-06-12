@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %} Sales {% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Sales</h2>
+
+    <a href="{% url 'sale_create' %}" class="btn btn-success">
+        + Create Sale
+    </a>
+</div>
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+<th>Customer</th>
+<th>Date</th>
+<th>Total</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for sale in sales %}
+
+<tr>
+
+<td>{{ sale.id }}</td>
+
+<td>{{ sale.customer }}</td>
+
+<td>{{ sale.sale_date }}</td>
+
+<td>₹{{ sale.total_amount }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

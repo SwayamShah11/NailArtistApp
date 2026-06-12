@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-4">
+
+<h2>Customers</h2>
+
+<a href="{% url 'customer_create' %}"
+   class="btn btn-success">
+
+Add Customer
+
+</a>
+
+</div>
+
+<table class="table table-striped">
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+<th>Phone</th>
+<th>Email</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for customer in customers %}
+
+<tr>
+
+<td>{{ customer.name }}</td>
+<td>{{ customer.phone }}</td>
+<td>{{ customer.email }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}
